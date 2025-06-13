@@ -8,8 +8,9 @@ def main(args):
 	df['rank'] = df['word_frequency'].rank(ascending=False,
 	method='max')
 	df['inverse_rank'] = 1 / df['rank']
+	#ax = df.plot.scatter(x='word_frequency', y='inverse_rank', figsize=[12, 6], grid=True, xlim=args.xlim)
 	ax = df.plot.scatter(x='word_frequency',
-		y='inverse_rank',
+		y='rank', loglog=True,
 		figsize=[12, 6],
 		grid=True,
 		xlim=args.xlim)
@@ -20,7 +21,7 @@ if __name__ == '__main__':
 	nargs='?', default='-',
 	help='Word count csv file name')
 	parser.add_argument('--outfile', type=str,
-	default='plotcounts.png',
+	default='plotcounts2.png',
 	help='Output image file name')
 	parser.add_argument('--xlim', type=float, nargs=2,
 	metavar=('XMIN', 'XMAX'),
